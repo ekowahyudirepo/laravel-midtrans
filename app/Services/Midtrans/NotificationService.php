@@ -12,11 +12,13 @@ class NotificationService extends Midtrans
         parent::__construct();
     }
 
-    public function getStatus()
+    public function getResponse()
     {
 
-        $result = new Notification();
+        $res = new Notification();
 
-        return $result;
+        $result = $res->getResponse();
+
+        return (object)$result;
     }
 }

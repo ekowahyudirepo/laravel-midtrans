@@ -104,7 +104,9 @@ class OrderController extends Controller
 
     public function status()
     {
-        $notif = new NotificationService();
+        $n = new NotificationService();
+
+        $notif = $n->getResponse();
 
         $transaction = $notif->transaction_status;
         $fraud = $notif->fraud_status;
