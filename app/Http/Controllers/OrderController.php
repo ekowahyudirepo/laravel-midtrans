@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Services\Midtrans\CreateSnapTokenService;
 use App\Services\Midtrans\StatusTransactionService;
+use App\Services\Midtrans\NotificationService;
 use Illuminate\Http\Request;
-
-use Midtrans\Notification;
 
 class OrderController extends Controller
 {
@@ -105,10 +104,7 @@ class OrderController extends Controller
 
     public function status()
     {
-        return '';
-        $notif = new Notification();
-        
-        return $notif;
+        return $notif = new NotificationService();
 
         $transaction = $notif->transaction_status;
         $fraud = $notif->fraud_status;
