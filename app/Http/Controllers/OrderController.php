@@ -111,15 +111,15 @@ class OrderController extends Controller
         $transaction = $notif->transaction_status;
         $fraud = $notif->fraud_status;
 
-        Order::where('number', $notif->order_id)->update(['payment_status' => 2]);
 
         error_log("Order ID $notif->order_id: " . "transaction status = $transaction, fraud staus = $fraud");
 
-        if ($transaction == 'capture') {
+        if ($transaction == 'settlement') {
             if ($fraud == 'challenge') {
                 // TODO Set payment status in merchant's database to 'challenge'
             } else if ($fraud == 'accept') {
                 // TODO Set payment status in merchant's database to 'success'
+                Order::where('number', $notif->order_id)->update(['payment_status' => 2]);
             }
         } else if ($transaction == 'cancel') {
             if ($fraud == 'challenge') {
